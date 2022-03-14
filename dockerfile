@@ -1,14 +1,15 @@
-FROM ubuntu
-MAINTAINER devops2018 <devopstraining2015@gmail.com>
-RUN apt-get update -y
-RUN touch /opt/file1
-RUN apt-get install git -y
-RUN git config --global user.name "DevOps Training"
-RUN git config --global user.email "polarapuprasad@gmail.com"
-RUN cd /opt && git clone https://github.com/polarapu/batch68.git
-#RUN yum install java -y
-#RUN yum install maven -y
-#RUN yum install wget -y
-#RUN mkdir /opt/tomcat
-#RUN cd /opt/tomcat && wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.31/bin/apache-tomcat-9.0.31.tar.gz
-#RUN cd /opt/tomcat && tar -xvf apache-tomcat-9.0.31.tar.gz
+FROM centos:centos7.9.2009
+MAINTAINER "holyjerusha"
+RUN mkdir /opt/test1
+RUN touch /opt/test1/file1
+RUN yum install java -y
+RUN yum install git -y
+RUN git config --global user.name "holyjerusha"
+RUN git config --global user.email "holyjerusha7700@gmail.com"
+RUN yum install wget -y
+RUN cd /opt && wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.17/bin/apache-tomcat-10.0.17.tar.gz --no-check-certificate
+RUN cd /opt && tar -xvf apache-tomcat-10.0.17.tar.gz
+EXPOSE 8089
+#ENV export M2_HOME=/path
+COPY tomcat-users.xml /opt/apache-tomcat-10.0.17/conf
+CMD git --version
